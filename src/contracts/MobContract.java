@@ -2,7 +2,7 @@ package contracts;
 
 import services.Content;
 import services.Dir;
-import services.EnvirenemmentService;
+import services.EnvironmentService;
 import services.MobService;
 import services.Cell;
 import decorators.MobDecorator;
@@ -15,7 +15,7 @@ public class MobContract extends MobDecorator implements MobService {
 		super (delegate) ; 
 	}
 	@Override
-	public EnvirenemmentService getEnv() {
+	public EnvironmentService getEnv() {
 		return delegate.getEnv();
 	}
 
@@ -34,15 +34,15 @@ public class MobContract extends MobDecorator implements MobService {
 		return delegate.getFace();
 	}
 
-	public void chekInvariants(){
+	public void chekInvariants() throws Exception, Error{
 		if ((getCol()<0) || (getCol()>= getEnv().getHeight())) 
 				throw new Error("debordement colonne"); 
 		if ((getRow()<0) || (getRow()>= getEnv().getWidth())) 
 			throw new Error("debordement row"); 
 		
-		if ((getEnv().getNature(getCol(), getRow())==Cell.WLL)&&
-			(getEnv().getNature(getCol(), getRow())==Cell.DNC) &&
-			(getEnv().getNature(getCol(), getRow())==Cell.DWC))
+		if ((getEnv().getCellNature(getCol(), getRow())==Cell.WLL)&&
+			(getEnv().getCellNature(getCol(), getRow())==Cell.DNC) &&
+			(getEnv().getCellNature(getCol(), getRow())==Cell.DWC))
 		
 		{
 			throw new Error ("cell de nature inaccessible");
@@ -50,7 +50,7 @@ public class MobContract extends MobDecorator implements MobService {
 	}
 	
 	@Override
-	public void init(EnvirenemmentService env, int col, int row, Dir face) {
+	public void init(EnvironmentService env, int col, int row, Dir face) throws Exception, Error {
 		//precond
 		if ((getCol()<0) || (getCol()>= getEnv().getHeight())) 
 			throw new Error("debordement colonne"); 
@@ -71,7 +71,7 @@ public class MobContract extends MobDecorator implements MobService {
 	}
 
 	@Override
-	public void forward() {
+	public void forward() throws Exception, Error {
 		
 		//capture 
 		int r =getRow();
@@ -84,7 +84,7 @@ public class MobContract extends MobDecorator implements MobService {
 		//post 
 		
 		if (getFace() == Dir.N) 
-			if ((getEnv().getNature(getCol(), getRow()+1)==Cell.EMP)||(getEnv().getNature(getCol(), getRow()+1)==Cell.DWO)&&
+			if ((getEnv().getCellNature(getCol(), getRow()+1)==Cell.EMP)||(getEnv().getCellNature(getCol(), getRow()+1)==Cell.DWO)&&
 				(getRow()+1<getEnv().getWidth())&&
 			 	(getEnv().getContent(getCol(), getRow()+1)==Content.No))
 					if ((getRow()!=r+1)||(getCol()==c))
@@ -97,7 +97,7 @@ public class MobContract extends MobDecorator implements MobService {
 	}
 
 	@Override
-	public void backward() {
+	public void backward() throws Exception, Error {
 
 		delegate.backward();
 		
@@ -106,7 +106,7 @@ public class MobContract extends MobDecorator implements MobService {
 	}
 
 	@Override
-	public void turnL() {
+	public void turnL() throws Exception, Error {
 
 		delegate.turnL();
 		
@@ -115,7 +115,7 @@ public class MobContract extends MobDecorator implements MobService {
 	}
 
 	@Override
-	public void turnR() {
+	public void turnR() throws Exception, Error {
 
 		delegate.turnR();
 		
@@ -124,7 +124,7 @@ public class MobContract extends MobDecorator implements MobService {
 	}
 
 	@Override
-	public void strafeL() {
+	public void strafeL() throws Exception, Error {
 
 		delegate.strafeL();
 		
@@ -133,7 +133,7 @@ public class MobContract extends MobDecorator implements MobService {
 	}
 
 	@Override
-	public void strafeR() {
+	public void strafeR() throws Exception, Error {
 
 		
 		delegate.strafeR();

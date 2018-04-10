@@ -1,7 +1,7 @@
 package decorators;
 
 import services.Dir;
-import services.EnvirenemmentService;
+import services.EnvironmentService;
 import services.MobService;
 
 public class MobDecorator implements MobService {
@@ -13,7 +13,7 @@ public class MobDecorator implements MobService {
 		this.delegate =delegate ; 
 	}
 	@Override
-	public EnvirenemmentService getEnv() {
+	public EnvironmentService getEnv() {
 		return delegate.getEnv();
 	}
 
@@ -32,42 +32,42 @@ public class MobDecorator implements MobService {
 		return delegate.getFace();
 	}
 
-	public void chekInvariants(){
+	public void chekInvariants() throws Exception, Error{
 		
 	}
 	
 	@Override
-	public void init(EnvirenemmentService env, int col, int row, Dir face) {
+	public void init(EnvironmentService env, int col, int row, Dir face) throws Exception, Error {
 		delegate.init(env, col, row, face);
 	}
 
 	@Override
-	public void forward() {
+	public void forward() throws Exception, Error {
 		delegate.forward();		
 	}
 
 	@Override
-	public void backward() {
+	public void backward() throws Exception, Error {
 		delegate.backward();
 	}
 
 	@Override
-	public void turnL() {
+	public void turnL() throws Exception, Error {
 		delegate.turnL();
 	}
 
 	@Override
-	public void turnR() {
+	public void turnR() throws Exception, Error {
 		delegate.turnR();
 	}
 
 	@Override
-	public void strafeL() {
+	public void strafeL() throws Exception, Error {
 		delegate.strafeL();
 	}
 
 	@Override
-	public void strafeR() {
+	public void strafeR() throws Exception, Error {
 		delegate.strafeR();
 	}
 

@@ -1,13 +1,13 @@
 package components;
 
 import services.Dir;
-import services.EnvirenemmentService;
+import services.EnvironmentService;
 import services.MobService;
 
 public class Mob implements MobService{
 
 	@Override
-	public EnvirenemmentService getEnv() {
+	public EnvironmentService getEnv() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -31,7 +31,7 @@ public class Mob implements MobService{
 	}
 
 	@Override
-	public void init(EnvirenemmentService env, int col, int row, Dir face) {
+	public void init(EnvironmentService env, int col, int row, Dir face) {
 		// TODO Auto-generated method stub
 		
 	}
